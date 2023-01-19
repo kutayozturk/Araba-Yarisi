@@ -3,6 +3,7 @@
 #include <dos.h> 
 #include <windows.h>
 #include <time.h>
+#include <fstream>
 
 #define SCREEN_WIDTH 90
 #define SCREEN_HEIGHT 26
@@ -104,7 +105,7 @@ void gameover(){
 	cout<<"\t\t--------------------------"<<endl;
 	cout<<"\t\t------- Oyun Bitti -------"<<endl;
 	cout<<"\t\t--------------------------"<<endl<<endl;
-	cout<<"\t\tMenüye geri dönmek için herhangi bir tuþa basýn.";
+	cout<<"\t\tMenÃ¼ye geri dÃ¶nmek iÃ§in herhangi bir tuÅŸa basÄ±n.";
 	getch();
 }
 void updateScore(){
@@ -116,11 +117,11 @@ void instructions(){
 	system("cls");
 	cout<<"Talimatlar";
 	cout<<"\n----------------";
-	cout<<"\n Sola veya saða hareket ederek arabalardan kaçýnýn. ";
-	cout<<"\n\n Sola gitmek için 'A'ya basýn";
-	cout<<"\n Saða gitmek için 'D'ye basýn";
-	cout<<"\n Çýkmak için 'Escape' tuþuna basýn";
-	cout<<"\n\nMenüye geri dönmek için herhangi bir tuþa basýn";
+	cout<<"\n Sola veya saÄŸa hareket ederek arabalardan kaÃ§Ä±nÄ±n. ";
+	cout<<"\n\n Sola gitmek iÃ§in 'A'ya basÄ±n";
+	cout<<"\n SaÄŸa gitmek iÃ§in 'D'ye basÄ±n";
+	cout<<"\n Ã‡Ä±kmak iÃ§in 'Escape' tuÅŸuna basÄ±n";
+	cout<<"\n\nMenÃ¼ye geri dÃ¶nmek iÃ§in herhangi bir tuÅŸa basÄ±n";
 	getch();
 }
 
@@ -137,13 +138,13 @@ void play(){
 	genEnemy(0);
 	genEnemy(1);
 	
-	gotoxy(WIN_WIDTH + 7, 2);cout<<"Araba Yarýþý";
+	gotoxy(WIN_WIDTH + 7, 2);cout<<"Araba YarÄ±ÅŸÄ±";
 	gotoxy(WIN_WIDTH + 6, 4);cout<<"----------";
 	gotoxy(WIN_WIDTH + 6, 6);cout<<"----------";
 	gotoxy(WIN_WIDTH + 7, 12);cout<<"Kontrol ";
 	gotoxy(WIN_WIDTH + 7, 13);cout<<"-------- ";
 	gotoxy(WIN_WIDTH + 2, 14);cout<<" A Tusu - Sol";
-	gotoxy(WIN_WIDTH + 2, 15);cout<<" D Tusu - Sað"; 
+	gotoxy(WIN_WIDTH + 2, 15);cout<<" D Tusu - SaÄŸ"; 
 	
 	gotoxy(18, 5);cout<<"Baslamak icin bir tusa bas";
 	getch();
@@ -203,6 +204,24 @@ void play(){
 int main()
 {
 	setlocale(LC_ALL,"Turkish");
+	
+	// ASCII DosyasÄ± Ã§aÄŸÄ±rma	
+	ifstream dosyaOku("car.txt");
+ 	string satir = "";
+
+  	if ( dosyaOku.is_open() ){
+
+    while ( getline(dosyaOku, satir) ){
+      cout << satir << endl;
+    }
+
+    dosyaOku.close();
+  }
+  
+  	cout << "\nARABA YARIÅžI \nGeÃ§mek iÃ§in [ENTER] tuÅŸuna bas ";
+    cin.get();
+	
+	
 	setcursor(0,0); 
 	srand( (unsigned)time(NULL)); 
 	 
@@ -211,10 +230,10 @@ int main()
 		gotoxy(10,5); cout<<" -------------------------- "; 
 		gotoxy(10,6); cout<<" |      Araba Yarisi      | "; 
 		gotoxy(10,7); cout<<" -------------------------- ";
-		gotoxy(10,9); cout<<"1. Baþla";
-		gotoxy(10,10); cout<<"2. Nasýl Oynanýr?";	 
-		gotoxy(10,11); cout<<"3. Çýkýþ";
-		gotoxy(10,13); cout<<"Seçim Yap: ";
+		gotoxy(10,9); cout<<"1. BaÅŸla";
+		gotoxy(10,10); cout<<"2. NasÄ±l OynanÄ±r?";	 
+		gotoxy(10,11); cout<<"3. Ã‡Ä±kÄ±ÅŸ";
+		gotoxy(10,13); cout<<"SeÃ§im Yap: ";
 		char op = getche();
 		
 		if( op=='1') play();
@@ -225,4 +244,3 @@ int main()
 	
 	return 0;
 }
-
