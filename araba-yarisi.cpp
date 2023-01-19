@@ -146,7 +146,7 @@ void play(){
 	gotoxy(WIN_WIDTH + 2, 14);cout<<" A Tusu - Sol";
 	gotoxy(WIN_WIDTH + 2, 15);cout<<" D Tusu - Sağ"; 
 	
-	gotoxy(18, 5);cout<<"Baslamak icin bir tusa bas";
+	gotoxy(18, 5);cout<<"Bir tusa bas";
 	getch();
 	gotoxy(18, 5);cout<<"                      ";
 	
@@ -218,7 +218,7 @@ int main()
     dosyaOku.close();
   }
   
-  	cout << "\nARABA YARIŞI \nGeçmek için [ENTER] tuşuna bas ";
+  	cout << "\nARABA YARIŞI \nGeçmek için [ENTER] ";
     cin.get();
 	
 	
